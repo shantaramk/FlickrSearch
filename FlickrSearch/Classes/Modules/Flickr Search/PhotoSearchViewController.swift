@@ -10,7 +10,9 @@ final class PhotoSearchViewController: UIViewController {
     
     //MARK: - Properties
     var presenter: IPhotoSearchPresenter?
-    
+    var photos: PhotoBaseModel?
+    private var pageCount = 0
+
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -23,10 +25,15 @@ final class PhotoSearchViewController: UIViewController {
         return collectionView
     }()
     
+    var searchText: String {
+        return "Girls"
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         collectionView.reloadData()
+        fetchSearchImages()
     }
 
 }
@@ -85,19 +92,54 @@ extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        guard let photo = photos?.photos.photo else { return 0 }
+        return photo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let pictureCell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.photo, for: indexPath) as? PictureCell else { fatalError()}
-       // pictureCell.titleLabel.text = "\(indexPath.row)"
+        let photo =  photos?.photos.photo ?? []
+        pictureCell.setData(photo[indexPath.row],
+                            collectionView: collectionView,
+                            indexPath: indexPath)
         return pictureCell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        displayNoInternetConnection()
+    }
 }
+
+
+//MARK: - Private Function: Fetch Request
+
+private extension PhotoSearchViewController {
+    func fetchSearchImages() {
+        pageCount+=1   //Count increment here
+        presenter?.fetchPhotoList(for: searchText, pageNo: pageCount)
+    }
+}
+
 
 //MARK: - Interactor Input Protocol Implementation
 
 extension PhotoSearchViewController: IPhotoSearchView {
+    func displayError(_ error: Error?) {
+        print("Error:", error.debugDescription)
+    }
     
+    func displayPhotoView(_ photos: PhotoBaseModel) {
+        self.photos = photos
+        collectionView.reloadData()
+    }
+    
+    func displayNoInternetConnection() {
+        let alertView = AlertView(title: LocalizedStringConstant.error,
+                                  message: LocalizedStringConstant.noInternetConnection,
+                                  okButtonText: LocalizedStringConstant.okay) { (_, button) in                }
+               
+          alertView.show(animated: true)
+        
+    }
 }
 

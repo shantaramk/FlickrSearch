@@ -15,10 +15,12 @@ final class PhotoSearchWireframe: IPhotoSearchWireframe {
     
     func setRootViewController(_ window: UIWindow) {
         let viewController = PhotoSearchViewController()
+        let interactor = PhotoSearchInteractor(repository: PhotoSearchRepository(service: APIManager()))
         let presenter = PhotoSearchPresenter(view: viewController,
-                                             interactor: PhotoSearchInteractor(repository: PaymentDetailRepository(service: nil)),
+                                             interactor: interactor,
                                              wireframe: self,
                                              reachability: Reachability())
+        interactor.presenter = presenter
         viewController.presenter = presenter
         window.rootViewController = viewController
         window.makeKeyAndVisible()

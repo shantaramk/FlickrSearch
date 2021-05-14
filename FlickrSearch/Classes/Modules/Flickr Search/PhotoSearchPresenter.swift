@@ -27,14 +27,39 @@ final class PhotoSearchPresenter {
     }
 }
 
+extension PhotoSearchPresenter {
+    func handlePhotoListFetched(_ photos: PhotoBaseModel) {
+        guard let view = view else { return }
+        view.displayPhotoView(photos)
+    }
+    
+    private func handleError(error: Error?) {
+        guard let view = view,
+              let reachability = reachability else { return }
+        if reachability.isConnectedToNetwork() {
+            view.displayError(error)
+        } else {
+            view.displayNoInternetConnection()
+        }
+    }
+}
 //MARK: - Presenter Protocol Implementation
 
 extension PhotoSearchPresenter: IPhotoSearchPresenter {
-    
+    func fetchPhotoList(for searchText: String,
+                        pageNo: Int) {
+        interactor?.fetchPhotoList(for: searchText, pageNo: pageNo)
+    }
 }
 
 //MARK: - Interactor Output Protocol Implementation
 
 extension PhotoSearchPresenter: IPhotoSearchInteractorOutput {
+    func onPhotoListFetched(_ photos: PhotoBaseModel) {
+        handlePhotoListFetched(photos)
+    }
     
+    func onError(_ error: Error?) {
+        handleError(error: error)
+    }
 }

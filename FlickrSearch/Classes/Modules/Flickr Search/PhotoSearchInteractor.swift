@@ -20,5 +20,14 @@ final class PhotoSearchInteractor {
 //MARK: - Interactor Input Protocol Implementation
 
 extension PhotoSearchInteractor: IPhotoSearchInteractorInput {
-    
+    func fetchPhotoList(for searchText: String,
+                        pageNo: Int) {
+        repository?.fetchPhotoList(searchText,
+                                   pageNo: pageNo,
+                                   successHandler: { (data) in
+                                    self.presenter?.onPhotoListFetched(data)
+                                   }, failureHandler: { (error) in
+                                    self.presenter?.onError(error)
+                                   })
+    }
 }
