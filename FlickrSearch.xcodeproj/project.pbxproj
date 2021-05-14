@@ -33,6 +33,7 @@
 		4FC193D0264ED41A0060E852 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC193CD264ED41A0060E852 /* AlertViewModel.swift */; };
 		4FC193D9264EE0F70060E852 /* LocalizedStringConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC193D8264EE0F70060E852 /* LocalizedStringConstant.swift */; };
 		4FC193DE264EE2680060E852 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC193DD264EE2680060E852 /* Alertable.swift */; };
+		4FC193E4264EE9300060E852 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC193E3264EE9300060E852 /* EmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		4FC193CD264ED41A0060E852 /* AlertViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		4FC193D8264EE0F70060E852 /* LocalizedStringConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedStringConstant.swift; sourceTree = "<group>"; };
 		4FC193DD264EE2680060E852 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		4FC193E3264EE9300060E852 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 		4FC19352264E53500060E852 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4FC193E2264EE9210060E852 /* View */,
 				4FC19394264E73DF0060E852 /* Utility */,
 				4FC1938B264E71080060E852 /* WebService */,
 				4FC1933B264E51640060E852 /* Application Delegate */,
@@ -292,6 +295,14 @@
 				4FC193CB264ED4190060E852 /* AlertViewProtocal.swift */,
 			);
 			path = AlertView;
+			sourceTree = "<group>";
+		};
+		4FC193E2264EE9210060E852 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4FC193E3264EE9300060E852 /* EmptyView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +438,7 @@
 				4FC193C7264EA7880060E852 /* ImageLoaderProtocol.swift in Sources */,
 				4FC193CF264ED41A0060E852 /* AlertView.swift in Sources */,
 				4FC1938D264E712F0060E852 /* WebService.swift in Sources */,
+				4FC193E4264EE9300060E852 /* EmptyView.swift in Sources */,
 				4FC193D0264ED41A0060E852 /* AlertViewModel.swift in Sources */,
 				4FC19396264E73F70060E852 /* Reachability.swift in Sources */,
 				4FC19372264E6AFF0060E852 /* PhotoSearchPresenter.swift in Sources */,

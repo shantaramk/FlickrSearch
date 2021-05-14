@@ -22,7 +22,7 @@ final class PhotoSearchWireframe: IPhotoSearchWireframe {
                                              reachability: Reachability())
         interactor.presenter = presenter
         viewController.presenter = presenter
-        window.rootViewController = viewController
+        window.rootViewController = UINavigationController(rootViewController: viewController)
         window.makeKeyAndVisible()
     }
 }

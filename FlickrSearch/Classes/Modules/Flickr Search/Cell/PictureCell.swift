@@ -15,7 +15,7 @@ final class PictureCell: UICollectionViewCell {
 
     let pictureView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .black
         imageView.contentMode = .scaleAspectFit
         imageView.image = #imageLiteral(resourceName: "placeholder")
         imageView.clipsToBounds = false

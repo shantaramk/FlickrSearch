@@ -10,8 +10,19 @@ final class PhotoSearchViewController: UIViewController {
     
     //MARK: - Properties
     var presenter: IPhotoSearchPresenter?
-    var photos: PhotoBaseModel?
+    var photos: PhotoBaseModel? {
+        didSet {
+            photo =  photos?.photos.photo ?? []
+            collectionView.reloadData()
+            refreshDataUI()
+        }
+    }
+    var photo = [Photo]()
     private var pageCount = 0
+    
+    // MARK: UI Elements
+    private var searchBarController: UISearchController!
+    private var emptyView: EmptyView!
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,7 +30,7 @@ final class PhotoSearchViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
@@ -33,7 +44,6 @@ final class PhotoSearchViewController: UIViewController {
         super.viewDidLoad()
         configureView()
         collectionView.reloadData()
-        fetchSearchImages()
     }
 
 }
@@ -43,6 +53,8 @@ final class PhotoSearchViewController: UIViewController {
 private extension PhotoSearchViewController {
     func configureView() {
         configureCollectionView()
+        configureSearchBar()
+        configureEmptyView()
     }
     
     func configureCollectionView() {
@@ -52,11 +64,32 @@ private extension PhotoSearchViewController {
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0.0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0.0).isActive = true
         collectionView.collectionViewLayout = createGridLayout()
+        collectionView.isHidden = true
         registerCells()
     }
     
     func registerCells() {
         collectionView.register(PictureCell.self, forCellWithReuseIdentifier: CellIdentifier.photo)
+    }
+    
+    func configureSearchBar() {
+        searchBarController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchBarController
+        searchBarController.delegate = self
+        searchBarController.searchBar.delegate = self
+        searchBarController.dimsBackgroundDuringPresentation = false
+    }
+    
+    func configureEmptyView() {
+        emptyView = EmptyView()
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        emptyView.isHidden = false
+        
+        view.addSubview(emptyView)
+        emptyView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0.0).isActive = true
+        emptyView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0).isActive = true
+        emptyView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0.0).isActive = true
+        emptyView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0.0).isActive = true
     }
     
     //MARK:- GridView Layout
@@ -98,15 +131,10 @@ extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let pictureCell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.photo, for: indexPath) as? PictureCell else { fatalError()}
-        let photo =  photos?.photos.photo ?? []
-        pictureCell.setData(photo[indexPath.row],
+         pictureCell.setData(photo[indexPath.row],
                             collectionView: collectionView,
                             indexPath: indexPath)
         return pictureCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        displayNoInternetConnection()
     }
 }
 
@@ -114,9 +142,14 @@ extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionVie
 //MARK: - Private Function: Fetch Request
 
 private extension PhotoSearchViewController {
-    func fetchSearchImages() {
+    func fetchSearchImages(for searchText: String) {
         pageCount+=1   //Count increment here
         presenter?.fetchPhotoList(for: searchText, pageNo: pageCount)
+    }
+    
+    func refreshDataUI() {
+        emptyView.isHidden = !photo.isEmpty
+        collectionView.isHidden = photo.isEmpty
     }
 }
 
@@ -130,7 +163,6 @@ extension PhotoSearchViewController: IPhotoSearchView {
     
     func displayPhotoView(_ photos: PhotoBaseModel) {
         self.photos = photos
-        collectionView.reloadData()
     }
     
     func displayNoInternetConnection() {
@@ -143,3 +175,18 @@ extension PhotoSearchViewController: IPhotoSearchView {
     }
 }
 
+//MARK: - UISearchController Delegate
+
+extension PhotoSearchViewController: UISearchControllerDelegate, UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text, text.count > 1 else {
+            return
+        }
+        fetchSearchImages(for: text)
+        searchBarController.searchBar.resignFirstResponder()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        photos = nil
+    }
+}

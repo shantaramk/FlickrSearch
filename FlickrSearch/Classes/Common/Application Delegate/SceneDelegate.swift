@@ -19,6 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let winScene = (scene as? UIWindowScene) else { return }
         
         let win = UIWindow(windowScene: winScene)
+        win.backgroundColor = .white
         PhotoSearchWireframe().setRootViewController(win)
         win.makeKeyAndVisible()
         window = win
