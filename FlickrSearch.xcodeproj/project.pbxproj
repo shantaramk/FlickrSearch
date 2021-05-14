@@ -15,6 +15,7 @@
 		4FC19314264E47450060E852 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC19312264E47450060E852 /* LaunchScreen.storyboard */; };
 		4FC1931F264E47450060E852 /* FlickrSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1931E264E47450060E852 /* FlickrSearchTests.swift */; };
 		4FC1932A264E47450060E852 /* FlickrSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19329264E47450060E852 /* FlickrSearchUITests.swift */; };
+		4FC19359264E603F0060E852 /* FlickrSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19358264E603F0060E852 /* FlickrSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4FC19325264E47450060E852 /* FlickrSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC19329264E47450060E852 /* FlickrSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrSearchUITests.swift; sourceTree = "<group>"; };
 		4FC1932B264E47450060E852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FC19358264E603F0060E852 /* FlickrSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +101,7 @@
 		4FC19306264E47420060E852 /* FlickrSearch */ = {
 			isa = PBXGroup;
 			children = (
-				4FC19307264E47420060E852 /* AppDelegate.swift */,
-				4FC19309264E47420060E852 /* SceneDelegate.swift */,
-				4FC1930B264E47420060E852 /* ViewController.swift */,
+				4FC19342264E523A0060E852 /* Classes */,
 				4FC1930D264E47420060E852 /* Main.storyboard */,
 				4FC19310264E47450060E852 /* Assets.xcassets */,
 				4FC19312264E47450060E852 /* LaunchScreen.storyboard */,
@@ -126,6 +126,81 @@
 				4FC1932B264E47450060E852 /* Info.plist */,
 			);
 			path = FlickrSearchUITests;
+			sourceTree = "<group>";
+		};
+		4FC1933B264E51640060E852 /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				4FC19309264E47420060E852 /* SceneDelegate.swift */,
+				4FC19307264E47420060E852 /* AppDelegate.swift */,
+			);
+			path = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		4FC19342264E523A0060E852 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4FC19352264E53500060E852 /* Common */,
+				4FC19346264E524A0060E852 /* Modules */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		4FC19346264E524A0060E852 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1934A264E526A0060E852 /* Flickr Search */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4FC1934A264E526A0060E852 /* Flickr Search */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1930B264E47420060E852 /* ViewController.swift */,
+				4FC19358264E603F0060E852 /* FlickrSearchViewController.swift */,
+			);
+			path = "Flickr Search";
+			sourceTree = "<group>";
+		};
+		4FC19352264E53500060E852 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1933B264E51640060E852 /* Application Delegate */,
+				4FC19356264E539D0060E852 /* Constant */,
+				4FC19355264E53930060E852 /* Extension */,
+				4FC19354264E53740060E852 /* Repositories */,
+				4FC19353264E53670060E852 /* Models */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4FC19353264E53670060E852 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FC19354264E53740060E852 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		4FC19355264E53930060E852 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4FC19356264E539D0060E852 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constant;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +335,7 @@
 			files = (
 				4FC1930C264E47420060E852 /* ViewController.swift in Sources */,
 				4FC19308264E47420060E852 /* AppDelegate.swift in Sources */,
+				4FC19359264E603F0060E852 /* FlickrSearchViewController.swift in Sources */,
 				4FC1930A264E47420060E852 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
