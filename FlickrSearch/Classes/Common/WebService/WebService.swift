@@ -34,7 +34,7 @@ final class APIManager: APIRequestable {
                         successHandler(jsonModel)
                     } catch let error {
                         debugPrint("Parsing Error:", error)
-                        failureHandler(error)
+                        failureHandler(self.handleFailure(error as NSError))
                     }
                 } else {
                     failureHandler(nil)
@@ -42,5 +42,13 @@ final class APIManager: APIRequestable {
             }
         }.resume()
          
+    }
+    
+    
+    func handleFailure(_ error: NSError) -> GeneralErrorModel {
+        
+        GeneralErrorModel(errorCode: error.code,
+                          message: error.localizedDescription,
+                          errorDomain: error.domain)
     }
 }

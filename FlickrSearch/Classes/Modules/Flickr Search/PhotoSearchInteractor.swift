@@ -20,6 +20,7 @@ final class PhotoSearchInteractor {
 //MARK: - Interactor Input Protocol Implementation
 
 extension PhotoSearchInteractor: IPhotoSearchInteractorInput {
+    
     func fetchPhotoList(for searchText: String,
                         pageNo: Int) {
         guard let repository = repository, let presenter = presenter  else { return }

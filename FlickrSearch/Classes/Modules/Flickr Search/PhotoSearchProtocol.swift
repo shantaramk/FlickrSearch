@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import  UIKit
 
 //MARK: - Wireframe
 
 protocol IPhotoSearchWireframe {
+    func setRootViewController(_ window: UIWindow)
 }
 
 //MARK: - Presenter
@@ -21,6 +23,7 @@ protocol IPhotoSearchPresenter {
 
 // MARK: - Interactor
 protocol IPhotoSearchInteractorInput {
+    var presenter: IPhotoSearchInteractorOutput? { get set }
     func fetchPhotoList(for searchText: String,
                         pageNo: Int)
 }

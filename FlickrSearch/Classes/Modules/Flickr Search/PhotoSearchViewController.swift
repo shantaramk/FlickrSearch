@@ -168,7 +168,7 @@ extension PhotoSearchViewController: IPhotoSearchView {
     func displayError(_ error: Error?) {
         LoaderView.shared.dismiss(animated: true)
         showAlert(title:LocalizedStringConstant.error ,
-                  message: LocalizedStringConstant.noInternetConnection)
+                  message: error.debugDescription)
     }
     
     func displayPhotoView(_ photos: [Photo]) {

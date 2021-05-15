@@ -39,6 +39,16 @@
 		4FC19405264FC7DE0060E852 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19404264FC7DE0060E852 /* UIImageView+Extension.swift */; };
 		4FC1940A264FCC300060E852 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19409264FCC300060E852 /* UICollectionViewLayout+Extension.swift */; };
 		4FC19418264FE6600060E852 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19417264FE6600060E852 /* UIViewController+Extension.swift */; };
+		4FC19426264FEC7C0060E852 /* PhotoSearchViewControllerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19425264FEC7B0060E852 /* PhotoSearchViewControllerSpy.swift */; };
+		4FC1942E264FEC930060E852 /* PhotoSearchWireframeSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1942D264FEC930060E852 /* PhotoSearchWireframeSpy.swift */; };
+		4FC19433264FECBC0060E852 /* PhotoSearchInteractorInputSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19432264FECBC0060E852 /* PhotoSearchInteractorInputSpy.swift */; };
+		4FC1943D264FECE50060E852 /* PhotoSearchPresenterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1943C264FECE50060E852 /* PhotoSearchPresenterSpy.swift */; };
+		4FC19445264FF0400060E852 /* PhotoSearchPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19444264FF0400060E852 /* PhotoSearchPresenterTest.swift */; };
+		4FC1944B264FF1300060E852 /* ReachabilityStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1944A264FF1300060E852 /* ReachabilityStub.swift */; };
+		4FC19454264FFFA20060E852 /* GeneralErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19453264FFFA20060E852 /* GeneralErrorModel.swift */; };
+		4FC1945D265002350060E852 /* PhotoBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1945C265002350060E852 /* PhotoBaseModel.swift */; };
+		4FC194652650097A0060E852 /* PhotoSearchInteractorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC194642650097A0060E852 /* PhotoSearchInteractorTest.swift */; };
+		4FC1946B26500A830060E852 /* PhotoSearchRepositorySpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1946A26500A830060E852 /* PhotoSearchRepositorySpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +107,16 @@
 		4FC19404264FC7DE0060E852 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		4FC19409264FCC300060E852 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
 		4FC19417264FE6600060E852 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		4FC19425264FEC7B0060E852 /* PhotoSearchViewControllerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchViewControllerSpy.swift; sourceTree = "<group>"; };
+		4FC1942D264FEC930060E852 /* PhotoSearchWireframeSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchWireframeSpy.swift; sourceTree = "<group>"; };
+		4FC19432264FECBC0060E852 /* PhotoSearchInteractorInputSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchInteractorInputSpy.swift; sourceTree = "<group>"; };
+		4FC1943C264FECE50060E852 /* PhotoSearchPresenterSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchPresenterSpy.swift; sourceTree = "<group>"; };
+		4FC19444264FF0400060E852 /* PhotoSearchPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchPresenterTest.swift; sourceTree = "<group>"; };
+		4FC1944A264FF1300060E852 /* ReachabilityStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityStub.swift; sourceTree = "<group>"; };
+		4FC19453264FFFA20060E852 /* GeneralErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralErrorModel.swift; sourceTree = "<group>"; };
+		4FC1945C265002350060E852 /* PhotoBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBaseModel.swift; sourceTree = "<group>"; };
+		4FC194642650097A0060E852 /* PhotoSearchInteractorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchInteractorTest.swift; sourceTree = "<group>"; };
+		4FC1946A26500A830060E852 /* PhotoSearchRepositorySpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchRepositorySpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +178,7 @@
 		4FC1931D264E47450060E852 /* FlickrSearchTests */ = {
 			isa = PBXGroup;
 			children = (
+				4FC1941D264FEB370060E852 /* Classes */,
 				4FC1931E264E47450060E852 /* FlickrSearchTests.swift */,
 				4FC19320264E47450060E852 /* Info.plist */,
 			);
@@ -231,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC193AB264E800C0060E852 /* PhotoModel.swift */,
+				4FC19453264FFFA20060E852 /* GeneralErrorModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -326,6 +348,78 @@
 				4FC193F8264F9B440060E852 /* LoaderViewProtocol.swift */,
 			);
 			path = LoaderView;
+			sourceTree = "<group>";
+		};
+		4FC1941D264FEB370060E852 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4FC19422264FEC1B0060E852 /* Modules */,
+				4FC1941E264FEB400060E852 /* Common */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		4FC1941E264FEB400060E852 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1946926500A5F0060E852 /* Repositories */,
+				4FC1945B265002180060E852 /* Models */,
+				4FC19449264FF1070060E852 /* Utility */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		4FC19422264FEC1B0060E852 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4FC19423264FEC2C0060E852 /* Flickr Search */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4FC19423264FEC2C0060E852 /* Flickr Search */ = {
+			isa = PBXGroup;
+			children = (
+				4FC19424264FEC3E0060E852 /* Test Dooubles */,
+				4FC19444264FF0400060E852 /* PhotoSearchPresenterTest.swift */,
+				4FC194642650097A0060E852 /* PhotoSearchInteractorTest.swift */,
+			);
+			path = "Flickr Search";
+			sourceTree = "<group>";
+		};
+		4FC19424264FEC3E0060E852 /* Test Dooubles */ = {
+			isa = PBXGroup;
+			children = (
+				4FC19425264FEC7B0060E852 /* PhotoSearchViewControllerSpy.swift */,
+				4FC1942D264FEC930060E852 /* PhotoSearchWireframeSpy.swift */,
+				4FC19432264FECBC0060E852 /* PhotoSearchInteractorInputSpy.swift */,
+				4FC1943C264FECE50060E852 /* PhotoSearchPresenterSpy.swift */,
+			);
+			path = "Test Dooubles";
+			sourceTree = "<group>";
+		};
+		4FC19449264FF1070060E852 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1944A264FF1300060E852 /* ReachabilityStub.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		4FC1945B265002180060E852 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1945C265002350060E852 /* PhotoBaseModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4FC1946926500A5F0060E852 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				4FC1946A26500A830060E852 /* PhotoSearchRepositorySpy.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +579,7 @@
 				4FC193CE264ED41A0060E852 /* AlertViewProtocal.swift in Sources */,
 				4FC1930A264E47420060E852 /* SceneDelegate.swift in Sources */,
 				4FC193B1264E878A0060E852 /* PhotoSearchRouter.swift in Sources */,
+				4FC19454264FFFA20060E852 /* GeneralErrorModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,7 +587,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC194652650097A0060E852 /* PhotoSearchInteractorTest.swift in Sources */,
+				4FC19426264FEC7C0060E852 /* PhotoSearchViewControllerSpy.swift in Sources */,
+				4FC19445264FF0400060E852 /* PhotoSearchPresenterTest.swift in Sources */,
+				4FC19433264FECBC0060E852 /* PhotoSearchInteractorInputSpy.swift in Sources */,
+				4FC1944B264FF1300060E852 /* ReachabilityStub.swift in Sources */,
+				4FC1943D264FECE50060E852 /* PhotoSearchPresenterSpy.swift in Sources */,
+				4FC1945D265002350060E852 /* PhotoBaseModel.swift in Sources */,
 				4FC1931F264E47450060E852 /* FlickrSearchTests.swift in Sources */,
+				4FC1942E264FEC930060E852 /* PhotoSearchWireframeSpy.swift in Sources */,
+				4FC1946B26500A830060E852 /* PhotoSearchRepositorySpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@ final class PhotoSearchPresenter {
     
     private var wireframe: IPhotoSearchWireframe?
     private var view: IPhotoSearchView?
-    private var interactor: IPhotoSearchInteractorInput?
+    var interactor: IPhotoSearchInteractorInput?
     private var reachability: IReachability?
     
     init(view: IPhotoSearchView,
