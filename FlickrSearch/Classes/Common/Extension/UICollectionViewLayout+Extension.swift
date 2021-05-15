@@ -2,7 +2,7 @@
 //  UICollectionViewLayout+Extension.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 15/05/21.
+//  Created by Shantaram Kokate on 15/05/21.
 //
 
 import UIKit

@@ -2,7 +2,7 @@
 //  PhotoSearchInteractor.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 14/05/21.
+//  Created by Shantaram Kokate on 14/05/21.
 //
 
 import Foundation
@@ -22,12 +22,13 @@ final class PhotoSearchInteractor {
 extension PhotoSearchInteractor: IPhotoSearchInteractorInput {
     func fetchPhotoList(for searchText: String,
                         pageNo: Int) {
-        repository?.fetchPhotoList(searchText,
-                                   pageNo: pageNo,
-                                   successHandler: { (data) in
-                                    self.presenter?.onPhotoListFetched(data)
-                                   }, failureHandler: { (error) in
-                                    self.presenter?.onError(error)
-                                   })
+        guard let repository = repository, let presenter = presenter  else { return }
+        repository.fetchPhotoList(searchText,
+                                  pageNo: pageNo,
+                                  successHandler: { (data) in
+                                    presenter.onPhotoListFetched(data)
+                                  }, failureHandler: { (error) in
+                                    presenter.onError(error)
+                                  })
     }
 }

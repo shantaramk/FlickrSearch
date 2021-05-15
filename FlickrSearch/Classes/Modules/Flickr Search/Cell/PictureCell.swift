@@ -2,7 +2,7 @@
 //  PictureCell.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 14/05/21.
+//  Created by Shantaram Kokate on 14/05/21.
 //
 
 import UIKit
@@ -51,6 +51,6 @@ private extension PictureCell {
 extension PictureCell {
     func setData(_ photo: Photo?) {
         guard let photo = photo, let url = photo.getImagePath() else { return }
-        self.pictureView.setImage(url, placeholder: #imageLiteral(resourceName: "placeholder"))
+        pictureView.setImage(url, placeholder: #imageLiteral(resourceName: "placeholder"))
     }
 }

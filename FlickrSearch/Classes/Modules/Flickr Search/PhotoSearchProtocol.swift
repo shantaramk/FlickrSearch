@@ -2,7 +2,7 @@
 //  PhotoSearchProtocol.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 14/05/21.
+//  Created by Shantaram Kokate on 14/05/21.
 //
 
 import Foundation
@@ -32,7 +32,7 @@ protocol IPhotoSearchInteractorOutput {
 
 // MARK: - View
 protocol IPhotoSearchView {
-    func displayPhotoView(_ photos: PhotoBaseModel)
+    func displayPhotoView(_ photos: [Photo])
     func displayError(_ error: Error?)
     func displayNoInternetConnection()
 }

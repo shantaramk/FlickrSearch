@@ -2,13 +2,13 @@
 //  EmptyView.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 14/05/21.
+//  Created by Shantaram Kokate on 14/05/21.
 //
 
 import UIKit
 class EmptyView: UIView {
     
-    let pictureView: UIImageView = {
+    private let pictureView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleToFill

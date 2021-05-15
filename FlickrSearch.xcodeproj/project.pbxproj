@@ -38,6 +38,7 @@
 		4FC193F9264F9B450060E852 /* LoaderViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC193F8264F9B440060E852 /* LoaderViewProtocol.swift */; };
 		4FC19405264FC7DE0060E852 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19404264FC7DE0060E852 /* UIImageView+Extension.swift */; };
 		4FC1940A264FCC300060E852 /* UICollectionViewLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19409264FCC300060E852 /* UICollectionViewLayout+Extension.swift */; };
+		4FC19418264FE6600060E852 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19417264FE6600060E852 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		4FC193F8264F9B440060E852 /* LoaderViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewProtocol.swift; sourceTree = "<group>"; };
 		4FC19404264FC7DE0060E852 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		4FC19409264FCC300060E852 /* UICollectionViewLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewLayout+Extension.swift"; sourceTree = "<group>"; };
+		4FC19417264FE6600060E852 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 			children = (
 				4FC19404264FC7DE0060E852 /* UIImageView+Extension.swift */,
 				4FC19409264FCC300060E852 /* UICollectionViewLayout+Extension.swift */,
+				4FC19417264FE6600060E852 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				4FC193C7264EA7880060E852 /* ImageLoaderProtocol.swift in Sources */,
 				4FC19405264FC7DE0060E852 /* UIImageView+Extension.swift in Sources */,
 				4FC193F9264F9B450060E852 /* LoaderViewProtocol.swift in Sources */,
+				4FC19418264FE6600060E852 /* UIViewController+Extension.swift in Sources */,
 				4FC193CF264ED41A0060E852 /* AlertView.swift in Sources */,
 				4FC1940A264FCC300060E852 /* UICollectionViewLayout+Extension.swift in Sources */,
 				4FC1938D264E712F0060E852 /* WebService.swift in Sources */,

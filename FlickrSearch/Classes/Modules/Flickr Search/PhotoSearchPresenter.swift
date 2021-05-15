@@ -2,7 +2,7 @@
 //  PhotoSearchPresenter.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 14/05/21.
+//  Created by Shantaram Kokate on 14/05/21.
 //
 
 import Foundation
@@ -30,7 +30,7 @@ final class PhotoSearchPresenter {
 extension PhotoSearchPresenter {
     func handlePhotoListFetched(_ photos: PhotoBaseModel) {
         guard let view = view else { return }
-        view.displayPhotoView(photos)
+        view.displayPhotoView(photos.list)
     }
     
     private func handleError(error: Error?) {
@@ -48,7 +48,8 @@ extension PhotoSearchPresenter {
 extension PhotoSearchPresenter: IPhotoSearchPresenter {
     func fetchPhotoList(for searchText: String,
                         pageNo: Int) {
-        interactor?.fetchPhotoList(for: searchText, pageNo: pageNo)
+        guard let interactor = interactor else { return }
+        interactor.fetchPhotoList(for: searchText, pageNo: pageNo)
     }
 }
 

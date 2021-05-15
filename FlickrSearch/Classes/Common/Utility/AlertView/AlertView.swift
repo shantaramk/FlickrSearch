@@ -117,13 +117,7 @@ class AlertView: UIView, AlertViewModel {
         self.completionHandler = actionCompletionHandler
         setupUIView(title: title, message: message, okButtonText: okButtonText, cancelButtonText: cancelButtonText)
     }
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
+
     private func setupUIView(title: String, message: String, okButtonText: String, cancelButtonText: String) {
         okButtonTitle = okButtonText
         cancelButtonTitle = cancelButtonText

@@ -2,31 +2,27 @@
 //  PhotoSearchViewController.swift
 //  FlickrSearch
 //
-//  Created by Dkatalis on 14/05/21.
+//  Created by Shantaram Kokate on 14/05/21.
 //
 
 import UIKit
 final class PhotoSearchViewController: UIViewController {
     
     //MARK: - Properties
-    var presenter: IPhotoSearchPresenter?
-    var photos: PhotoBaseModel? {
+    internal var presenter: IPhotoSearchPresenter?
+    private var photos = [Photo]() {
         didSet {
-            if let photoList = photos?.list {
-                photo.append(contentsOf: photoList)
-            }
             collectionView.reloadData()
             refreshDataUI()
         }
     }
-    var photo = [Photo]()
     private var pageCount = 0
     
     // MARK: UI Elements
     private var searchBarController: UISearchController!
     private var emptyView: EmptyView!
 
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -38,7 +34,7 @@ final class PhotoSearchViewController: UIViewController {
         return collectionView
     }()
     
-    var searchText: String {
+    private var searchText: String {
         guard let text = searchBarController.searchBar.text else {
             return ""
         }
@@ -118,7 +114,7 @@ private extension PhotoSearchViewController {
 extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photo.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -129,9 +125,9 @@ extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let pictureCell = cell as? PictureCell else { return }
-        pictureCell.setData(photo[indexPath.row])
+        pictureCell.setData(photos[indexPath.row])
     
-        if indexPath.row == (photo.count - 10) {
+        if indexPath.row == (photos.count - 10) {
             fetchNextPage(for: searchText)
         }
     }
@@ -143,24 +139,25 @@ extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionVie
 private extension PhotoSearchViewController {
     func fetchSearchImages(for searchText: String) {
         LoaderView.shared.show(animated: true)
-        presenter?.fetchPhotoList(for: searchText, pageNo: pageCount)
+        guard let presenter = presenter else { return }
+        presenter.fetchPhotoList(for: searchText, pageNo: pageCount)
     }
     
     func fetchNextPage(for searchText: String) {
         LoaderView.shared.show(animated: true)
         pageCount+=1
-        presenter?.fetchPhotoList(for: searchText, pageNo: pageCount)
+        guard let presenter = presenter else { return }
+        presenter.fetchPhotoList(for: searchText, pageNo: pageCount)
     }
     
     func refreshDataUI() {
-        emptyView.isHidden = !photo.isEmpty
-        collectionView.isHidden = photo.isEmpty
+        emptyView.isHidden = !photos.isEmpty
+        collectionView.isHidden = photos.isEmpty
     }
     
     func resetView() {
         pageCount = 1
-        photo.removeAll()
-        photos = nil
+        photos.removeAll()
     }
 }
 
@@ -174,9 +171,9 @@ extension PhotoSearchViewController: IPhotoSearchView {
                   message: LocalizedStringConstant.noInternetConnection)
     }
     
-    func displayPhotoView(_ photos: PhotoBaseModel) {
+    func displayPhotoView(_ photos: [Photo]) {
         LoaderView.shared.dismiss(animated: true)
-        self.photos = photos
+        self.photos.append(contentsOf: photos)
     }
     
     func displayNoInternetConnection() {
