@@ -6,9 +6,8 @@ This is a basic example of the Flickr image search engine. It will search for an
 
 - Clone the repo and run FlickrSearch.xcodeproj
 - Run the project and look for any keyword like "Home".
-
-![SearchPhoto](https://im4.ezgif.com/tmp/ezgif-4-70403d73de2f.gif)
-
+- 
+![ezgif-4-70403d73de2f-2-min](https://user-images.githubusercontent.com/7990309/118373371-18480780-b5d4-11eb-95c3-64eb5ebc9c35.gif)
 
 ## Class Details
 
