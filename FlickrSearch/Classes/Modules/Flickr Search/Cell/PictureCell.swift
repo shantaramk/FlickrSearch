@@ -9,15 +9,14 @@ import UIKit
 
 final class PictureCell: UICollectionViewCell {
     
-    //MARK: - Properties
+    // MARK: UI Elements
     
     private let imageLoader = ImageLoader()
 
     let pictureView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .black
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = #imageLiteral(resourceName: "placeholder")
+        imageView.backgroundColor = .white
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -50,13 +49,8 @@ private extension PictureCell {
 }
 
 extension PictureCell {
-    func setData(_ photo: Photo?, collectionView: UICollectionView, indexPath: IndexPath) {
-        guard let photo = photo, let imageUrl = photo.getImagePath() else { return }
-        imageLoader.requestImage(from :imageUrl, completion: { (image) -> Void in
-            let indexPath_ = collectionView.indexPath(for: self)
-            if indexPath_ == indexPath {
-                self.pictureView.image = image
-            }
-        })
+    func setData(_ photo: Photo?) {
+        guard let photo = photo, let url = photo.getImagePath() else { return }
+        self.pictureView.setImage(url, placeholder: #imageLiteral(resourceName: "placeholder"))
     }
 }

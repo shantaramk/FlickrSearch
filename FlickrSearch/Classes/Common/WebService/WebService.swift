@@ -23,6 +23,7 @@ final class APIManager: APIRequestable {
         let sessionConfigure = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfigure)
         guard let url = URL(string: String(format: "%@%@", Domain.development, path)) else { return }
+        debugPrint("API Request: ", url)
         let urlRequest = URLRequest(url: url)
         
         session.dataTask(with: urlRequest) { (data, response, error) in

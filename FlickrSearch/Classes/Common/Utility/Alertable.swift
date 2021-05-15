@@ -8,14 +8,11 @@
 import Foundation
 import UIKit
 
-protocol Alertable { }
-
-extension Alertable where Self: UIViewController {
-    func showAlert(_ message: String) {
-        let alertView = AlertView(title: LocalizedStringConstant.error,
-                                  message: LocalizedStringConstant.noInternetConnection,
-                                  okButtonText: LocalizedStringConstant.okay) { (_, button) in                }
-        
-        alertView.show(animated: true)
-    }
+func showAlert(title: String,  message: String) {
+    let alertView = AlertView(title: title,
+                              message: message,
+                              okButtonText: LocalizedStringConstant.okay) { (_, button) in                }
+    
+    alertView.show(animated: true)
 }
+

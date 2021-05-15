@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
  
 final class Cache: NSCache<AnyObject, AnyObject> {
     static let sharedInstance = Cache()

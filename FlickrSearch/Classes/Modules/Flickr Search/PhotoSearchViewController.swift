@@ -12,7 +12,9 @@ final class PhotoSearchViewController: UIViewController {
     var presenter: IPhotoSearchPresenter?
     var photos: PhotoBaseModel? {
         didSet {
-            photo =  photos?.photos.photo ?? []
+            if let photoList = photos?.list {
+                photo.append(contentsOf: photoList)
+            }
             collectionView.reloadData()
             refreshDataUI()
         }
@@ -37,7 +39,10 @@ final class PhotoSearchViewController: UIViewController {
     }()
     
     var searchText: String {
-        return "Girls"
+        guard let text = searchBarController.searchBar.text else {
+            return ""
+        }
+        return text
     }
 
     override func viewDidLoad() {
@@ -54,6 +59,7 @@ private extension PhotoSearchViewController {
     func configureView() {
         configureCollectionView()
         configureSearchBar()
+        configureNavigationBar()
         configureEmptyView()
     }
     
@@ -78,6 +84,13 @@ private extension PhotoSearchViewController {
         searchBarController.delegate = self
         searchBarController.searchBar.delegate = self
         searchBarController.dimsBackgroundDuringPresentation = false
+        searchBarController.isActive = true
+    }
+    
+    func configureNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.title = LocalizedStringConstant.flickrSearch
     }
     
     func configureEmptyView() {
@@ -95,24 +108,8 @@ private extension PhotoSearchViewController {
     //MARK:- GridView Layout
     
     private func createGridLayout() -> UICollectionViewLayout {
-
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.333),
-                                              heightDimension: .fractionalHeight(1.0))
-
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        // the add for the each item The the allocate same, box
-        item.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(0.4))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+        return UICollectionViewLayout.viewLayout(itemSize: LayoutSize(height: ItemSize.height, width:  ItemSize.width),
+                                                 groupSize: LayoutSize(height: GroupSize.height, width: GroupSize.width))
     }
 }
 
@@ -120,21 +117,23 @@ private extension PhotoSearchViewController {
 
 extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let photo = photos?.photos.photo else { return 0 }
         return photo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let pictureCell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifier.photo, for: indexPath) as? PictureCell else { fatalError()}
-         pictureCell.setData(photo[indexPath.row],
-                            collectionView: collectionView,
-                            indexPath: indexPath)
+        pictureCell.pictureView.image = nil
         return pictureCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let pictureCell = cell as? PictureCell else { return }
+        pictureCell.setData(photo[indexPath.row])
+    
+        if indexPath.row == (photo.count - 10) {
+            fetchNextPage(for: searchText)
+        }
     }
 }
 
@@ -143,13 +142,25 @@ extension PhotoSearchViewController: UICollectionViewDataSource, UICollectionVie
 
 private extension PhotoSearchViewController {
     func fetchSearchImages(for searchText: String) {
-        pageCount+=1   //Count increment here
+        LoaderView.shared.show(animated: true)
+        presenter?.fetchPhotoList(for: searchText, pageNo: pageCount)
+    }
+    
+    func fetchNextPage(for searchText: String) {
+        LoaderView.shared.show(animated: true)
+        pageCount+=1
         presenter?.fetchPhotoList(for: searchText, pageNo: pageCount)
     }
     
     func refreshDataUI() {
         emptyView.isHidden = !photo.isEmpty
         collectionView.isHidden = photo.isEmpty
+    }
+    
+    func resetView() {
+        pageCount = 1
+        photo.removeAll()
+        photos = nil
     }
 }
 
@@ -158,20 +169,20 @@ private extension PhotoSearchViewController {
 
 extension PhotoSearchViewController: IPhotoSearchView {
     func displayError(_ error: Error?) {
-        print("Error:", error.debugDescription)
+        LoaderView.shared.dismiss(animated: true)
+        showAlert(title:LocalizedStringConstant.error ,
+                  message: LocalizedStringConstant.noInternetConnection)
     }
     
     func displayPhotoView(_ photos: PhotoBaseModel) {
+        LoaderView.shared.dismiss(animated: true)
         self.photos = photos
     }
     
     func displayNoInternetConnection() {
-        let alertView = AlertView(title: LocalizedStringConstant.error,
-                                  message: LocalizedStringConstant.noInternetConnection,
-                                  okButtonText: LocalizedStringConstant.okay) { (_, button) in                }
-               
-          alertView.show(animated: true)
-        
+        LoaderView.shared.dismiss(animated: true)
+        showAlert(title:LocalizedStringConstant.error ,
+                  message: LocalizedStringConstant.noInternetConnection)
     }
 }
 
@@ -183,10 +194,12 @@ extension PhotoSearchViewController: UISearchControllerDelegate, UISearchBarDele
         guard let text = searchBar.text, text.count > 1 else {
             return
         }
+        resetView()
         fetchSearchImages(for: text)
         searchBarController.searchBar.resignFirstResponder()
     }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        photos = nil
+        resetView()
     }
 }

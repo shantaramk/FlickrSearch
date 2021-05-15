@@ -34,3 +34,9 @@ extension PhotoURL where Self == Photo {
     }
     
 }
+
+extension PhotoBaseModel {
+    var list: [Photo] {
+        return photos.photo
+    }
+}

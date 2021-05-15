@@ -8,14 +8,14 @@
 import UIKit
 class EmptyView: UIView {
     
-    private let label: UILabel = {
-        let l = UILabel()
-        l.font = UIFont(name: "HelveticaNeue", size: 24)
-        l.text = "No results found"
-        l.textColor = .black
-        l.textAlignment = .center
-        l.translatesAutoresizingMaskIntoConstraints = false
-        return l
+    let pictureView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .white
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = false
+        imageView.image = #imageLiteral(resourceName: "photo-searching-illustrated")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     override init(frame: CGRect) {
@@ -23,10 +23,12 @@ class EmptyView: UIView {
         
         backgroundColor = .clear
         
-        addSubview(label)
+        addSubview(pictureView)
         
-        label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -60).isActive = true
-        label.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        pictureView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -60).isActive = true
+        pictureView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        pictureView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.79).isActive = true
+        pictureView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.24).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
