@@ -48,3 +48,11 @@ This is used to fetch the stream of data, create request.
 This module consists XCTTest classes for testing. 
 - **PhotoSearchPresenterTest**:  This class tests the network interactions, Internet connectivity, network errors, internal errors.
 - **PhotoSearchInteractorTest**:  This class tests the network interactions, repository.
+
+#### Point To Noted
+Code Reviewer ask me to do some code refactoring. I will cover all of possible comments
+- **Code Stability**: Code should be break if client want to use core data instead of fetch data from remote server. You shoudl follow the SOLID principle while building the app architecture. which help us to rid out from tightly coupled code. 
+- **Class Name**: Every entity in Router Architecture should have meaningfull name
+- **Cache Mechanism**: In existing code based I used NSCache class provided by apple. There is minor difference between NSCache and Dictionary i.e  NSCache has capability to release memeory when cache size full.
+- **Custom Cache Mechanism**: Interviewer may ask you to implement the Custom Cache API. you must to know LRU concept which manage the Cache technique efficiently.
+
