@@ -9,8 +9,8 @@ import Foundation
 
 protocol IWebService {
     func performRequest<T: Decodable>(_ path: String,
-                        successHandler: @escaping(T) -> Void,
-                        failureHandler: @escaping(Error?) -> Void)
+                                      successHandler: @escaping(T) -> Void,
+                                      failureHandler: @escaping(Error?) -> Void)
 }
 
 protocol APIRequestable: IWebService {}
@@ -36,10 +36,10 @@ final class APIManager: APIRequestable {
                 }
                 
                 guard let responseData = response as? HTTPURLResponse,
-                    let receivedData = data else{
-                        let errorType = NetworkError.noResponseData
-                        failureHandler(errorType)
-                        return
+                      let receivedData = data else{
+                    let errorType = NetworkError.noResponseData
+                    failureHandler(errorType)
+                    return
                 }
                 
                 let responseStatus = self.isValidResponse(response: responseData)
@@ -51,15 +51,15 @@ final class APIManager: APIRequestable {
                     } catch let error {
                         debugPrint("Parsing Error:", error)
                         failureHandler(NetworkError.unableToDecodeResponseData(errorDescription: error.localizedDescription))
-
+                        
                     }
-                    case .failure(let error):
-                        let errorType = NetworkError.other(message: error.localizedDescription)
-                        failureHandler(errorType)
+                case .failure(let error):
+                    let errorType = NetworkError.other(message: error.localizedDescription)
+                    failureHandler(errorType)
                 }
             }
         }.resume()
-         
+        
     }
     
     func isValidResponse(response: HTTPURLResponse) -> Result<String, NetworkError>{
