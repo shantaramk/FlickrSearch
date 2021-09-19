@@ -28,27 +28,51 @@ final class APIManager: APIRequestable {
         
         session.dataTask(with: urlRequest) { (data, response, error) in
             DispatchQueue.main.async {
-                if let data = data {
+                
+                if let _ = error{
+                    let errorType = NetworkError.other(message: error?.localizedDescription)
+                    failureHandler(errorType)
+                    return
+                }
+                
+                guard let responseData = response as? HTTPURLResponse,
+                    let receivedData = data else{
+                        let errorType = NetworkError.noResponseData
+                        failureHandler(errorType)
+                        return
+                }
+                
+                let responseStatus = self.isValidResponse(response: responseData)
+                switch responseStatus {
+                case .success:
                     do {
-                        let jsonModel = try JSONDecoder().decode(T.self, from: data)
+                        let jsonModel = try JSONDecoder().decode(T.self, from: receivedData)
                         successHandler(jsonModel)
                     } catch let error {
                         debugPrint("Parsing Error:", error)
-                        failureHandler(self.handleFailure(error as NSError))
+                        failureHandler(NetworkError.unableToDecodeResponseData(errorDescription: error.localizedDescription))
+
                     }
-                } else {
-                    failureHandler(nil)
+                    case .failure(let error):
+                        let errorType = NetworkError.other(message: error.localizedDescription)
+                        failureHandler(errorType)
                 }
             }
         }.resume()
          
     }
     
-    
-    func handleFailure(_ error: NSError) -> GeneralErrorModel {
-        
-        GeneralErrorModel(errorCode: error.code,
-                          message: error.localizedDescription,
-                          errorDomain: error.domain)
+    func isValidResponse(response: HTTPURLResponse) -> Result<String, NetworkError>{
+        switch response.statusCode{
+        case 200...299:
+            return .success("Valid Response")
+        case 401:
+            return .failure(NetworkError.authenticationError)
+        case 500:
+            return .failure(NetworkError.badRequest)
+        default:
+            return .failure(NetworkError.failed)
+        }
     }
+    
 }

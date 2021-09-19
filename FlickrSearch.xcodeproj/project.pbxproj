@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F8390CB26F7C237000B123E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8390CA26F7C237000B123E /* NetworkError.swift */; };
 		4FC19308264E47420060E852 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19307264E47420060E852 /* AppDelegate.swift */; };
 		4FC1930A264E47420060E852 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC19309264E47420060E852 /* SceneDelegate.swift */; };
 		4FC19311264E47450060E852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC19310264E47450060E852 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F8390CA26F7C237000B123E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4FC19304264E47420060E852 /* FlickrSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC19307264E47420060E852 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FC19309264E47420060E852 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC1938C264E712F0060E852 /* WebService.swift */,
+				4F8390CA26F7C237000B123E /* NetworkError.swift */,
 			);
 			path = WebService;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				4FC1940A264FCC300060E852 /* UICollectionViewLayout+Extension.swift in Sources */,
 				4FC1938D264E712F0060E852 /* WebService.swift in Sources */,
 				4FC193E4264EE9300060E852 /* EmptyView.swift in Sources */,
+				4F8390CB26F7C237000B123E /* NetworkError.swift in Sources */,
 				4FC193F4264F9A6F0060E852 /* LoaderView.swift in Sources */,
 				4FC193D0264ED41A0060E852 /* AlertViewModel.swift in Sources */,
 				4FC19396264E73F70060E852 /* Reachability.swift in Sources */,
